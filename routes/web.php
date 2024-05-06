@@ -2,6 +2,7 @@
 
 use App\Enums\RolesEnum;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,38 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth', 'verified', 'role:'.RolesEnum::ADMIN->value)->name('dashboard');
+
+
+Route::middleware('auth', 'verified', 'role:'.RolesEnum::ADMIN->value)->prefix('dashboard')->group(function (){
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    Route::get('/universities', function () {
+        return view('admin.universities');
+    })->name('universities');
+    
+    Route::get('/universities/add', function () {
+        return view('admin.new-university');
+    })->name('universities.add');
+
+    Route::post('/universities/add', function (Request $request) {
+        dd($request);
+    })->name('universities.store');
+
+    Route::get('/users', function () {
+        return view('admin.users');
+    })->name('users');
+
+    Route::get('/notes', function () {
+        return view('admin.notes');
+    })->name('notes');
+
+    Route::get('/comments', function () {
+        return view('admin.comments');
+    })->name('comments');
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
