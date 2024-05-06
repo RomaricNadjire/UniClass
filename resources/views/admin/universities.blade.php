@@ -25,34 +25,20 @@
                                     <th class="text-left p-3 px-5">Infrastructure</th>
                                     <th></th>
                                 </tr>
+                                @foreach ($universities as $university)
                                 <tr class="border-b">
-                                    <td class="p-3 px-5"><input type="text" value="user.name" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-[#6A64F1] hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+                                    <td class="p-3"><input type="text" value="{{$university->name}}" class="bg-transparent text-wrap w-full"></td>
+                                    <td class="p-3"><input type="text" value="{{$university->description}}" class="bg-transparent text-wrap w-full"></td>
+                                    <td class="p-3"><input type="text" value="{{$university->programs}}" class="bg-transparent text-wrap w-full"></td>
+                                    <td class="p-3">
+                                        <a href="{{asset('storage/'.$university->infrastructure)}}" target="_blank"><img src="{{asset('storage/'.$university->infrastructure)}}" alt="" class="h-8 w-auto"></a>
+                                    </td>
+                                    <td class="p-3 px-5 flex justify-end">
+                                        <a href="{{route('universities.show', $university->id)}}" class="mr-3 text-sm bg-[#6A64F1] hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Voir</a>
+                                        <a href="{{route('universities.delete', $university->id)}}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</a>
+                                    </td>
                                 </tr>
-                                <tr class="border-b">
-                                    <td class="p-3 px-5"><input type="text" value="user.name" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>      
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-[#6A64F1] hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="p-3 px-5"><input type="text" value="user.name" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-[#6A64F1] hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
-                                </tr>
-                                <tr class="border-b">
-                                    <td class="p-3 px-5"><input type="text" value="user.name" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5"><input type="text" value="user.email" class="bg-transparent"></td>
-                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-[#6A64F1] hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
