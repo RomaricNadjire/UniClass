@@ -5,7 +5,7 @@
 
 @layer base{
     *{
-        @apply transition-all duration-500;
+        @apply transition-all duration-500 outline-[#6A64F1] ring-[#6A64F1];
     }
     td input, td select{
         @apply outline-none border-none;
@@ -20,7 +20,53 @@
     }
 
     tr:nth-child(n+2){
-        @apply hover:bg-orange-100
+        @apply hover:bg-orange-100;
+    }
+
+    .navigation{
+        @apply flex max-lg:flex-col justify-around max-lg:justify-between max-lg:px-8 items-center gap-4 p-3 w-full shadow-md backdrop-blur-md bg-white max-w-[2048px] lg:overflow-x-hidden max-lg:h-16
+        transition-height duration-500;
+    }
+
+    .links{
+        @apply flex max-lg:flex-col lg:gap-4 font-medium max-lg:w-full max-lg:scale-0 overflow-hidden max-lg:bg-white max-lg:divide-y max-lg:divide-gray-200 max-lg:mb-1 origin-top;
+    }
+
+    .link{
+        @apply capitalize font-semibold text-gray-800 hover:text-[#6A64F1] focus:outline focus:outline-2 focus:rounded-sm min-w-24 flex items-center justify-center p-2 px-4 rounded-md hover:shadow-md;
+    }
+
+    .btn{
+        @apply link max-lg:w-full max-lg:p-3 max-lg:divide-gray-700 lg:border-2 lg:border-[#6A64F1] lg:text-[#6A64F1] lg:hover:bg-[#6A64F1] lg:hover:text-gray-200 hover:scale-105 overflow-hidden;
+    }
+
+    #toggler{
+        @apply w-full h-1 bg-gray-700 relative lg:hidden duration-500
+    }
+
+    #toggler::before{
+        content: '';
+        @apply w-full h-full bg-gray-700 absolute -top-3 left-0 duration-500
+    }
+
+    #toggler::after{
+        content: '';
+        @apply w-full h-full bg-gray-700 absolute top-3 left-0 duration-500
+    }
+
+    #toggler.rotate{
+        content: '';
+        @apply bg-transparent;
+    }
+
+    #toggler.rotate::before{
+        content: '';
+        @apply w-full h-full bg-gray-700 absolute top-0 left-0 rotate-[45deg] origin-center
+    }
+
+    #toggler.rotate::after{
+        content: '';
+        @apply w-full h-full bg-gray-700 absolute top-0 left-0 -rotate-[45deg] origin-center
     }
     
 }

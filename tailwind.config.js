@@ -11,6 +11,9 @@ export default {
 
     theme: {
         extend: {
+            transitionProperty: {
+                'height': 'height',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
