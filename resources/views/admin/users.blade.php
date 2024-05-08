@@ -10,9 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="text-gray-900 bg-gray-200">
                     <div class="p-4 flex">
-                        <h1 class="text-3xl">
-                            Liste des utilisateurs
-                        </h1>
+                        <h1 class="text-3xl">Liste des utilisateurs</h1>
                     </div>
                     <div class="px-3 py-4 flex justify-center overflow-auto">
                         <table class="w-full text-md bg-white shadow-md rounded mb-4">
