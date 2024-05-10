@@ -30,7 +30,7 @@
                                     <td class="p-3 px-5"><input type="text" value="{{$comment->user->name}}" class="bg-transparent"></td>
                                     <td class="p-3 px-5"><input type="text" value="{{$comment->university->name}}" class="bg-transparent"></td>
                                     <td class="p-3 px-5"><input type="text" value="{{$comment->content}}" class="bg-transparent"></td>
-                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+                                    <td class="p-3 px-5 flex justify-end"><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

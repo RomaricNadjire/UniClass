@@ -15,5 +15,8 @@
         "tailwindcss": "^3.1.0",
         "typescript": ">=3.4.0 and <3.5.0",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "npm": "^10.7.0"
     }
 }

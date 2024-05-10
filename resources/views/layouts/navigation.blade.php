@@ -5,45 +5,57 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+                    @auth
+                        @if (auth()->user()->hasRole('admin'))
+                            <a href="{{ route('dashboard') }}">
+                                <x-application-logo route="dashboard" class="block h-9 w-auto fill-current text-gray-800" />
+                            </a>
+                        @else
+                            <a href="{{ route('home') }}">
+                                <x-application-logo route="home" class="block h-9 w-auto fill-current text-gray-800" />
+                            </a>
+                        @endif
+                    @endauth
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Tableau de bord') }}
-                    </x-nav-link>
-                </div>
+                @auth
+                    @if (auth()->user()->hasRole('admin'))
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Tableau de bord') }}
+                            </x-nav-link>
+                        </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('universities')" :active="request()->routeIs('universities')">
-                        {{ __('Universités') }}
-                    </x-nav-link>
-                </div>
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('universities')" :active="request()->routeIs('universities')">
+                                {{ __('Universités') }}
+                            </x-nav-link>
+                        </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                        {{ __('Utilisateurs') }}
-                    </x-nav-link>
-                </div>
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                                {{ __('Utilisateurs') }}
+                            </x-nav-link>
+                        </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('notes')" :active="request()->routeIs('notes')">
-                        {{ __('Notes') }}
-                    </x-nav-link>
-                </div>
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('notes')" :active="request()->routeIs('notes')">
+                                {{ __('Notes') }}
+                            </x-nav-link>
+                        </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('comments')" :active="request()->routeIs('comments')">
-                        {{ __('Commentaires') }}
-                    </x-nav-link>
-                </div>
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('comments')" :active="request()->routeIs('comments')">
+                                {{ __('Commentaires') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+                @endauth
             </div>
 
             <!-- Settings Dropdown -->
@@ -63,7 +75,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -73,7 +85,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Déconnexion') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -95,21 +107,25 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Tableau de bord') }}
-            </x-responsive-nav-link>
+            @auth
+                @if (auth()->user()->hasRole('admin'))
+                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Tableau de bord') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('universities')" :active="request()->routeIs('universities')">
-                {{ __('Universités') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('universities')" :active="request()->routeIs('universities')">
+                        {{ __('Universités') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
-                {{ __('Utilisateurs') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('users')" :active="request()->routeIs('users')">
+                        {{ __('Utilisateurs') }}
+                    </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('comments')" :active="request()->routeIs('comments')">
-                {{ __('Commentaires') }}
-            </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('comments')" :active="request()->routeIs('comments')">
+                        {{ __('Commentaires') }}
+                    </x-responsive-nav-link>
+                @endif
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
@@ -127,11 +143,10 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Déconnexion') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
